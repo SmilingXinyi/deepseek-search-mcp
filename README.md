@@ -124,6 +124,23 @@ The structured result includes `title`, `content`, `truncated`, and `original_ch
 | `internal/deepseek` | DeepSeek HTTP client, validation, and formatting |
 | `internal/logger` | stderr plus rotating file logs |
 
+## Release
+
+Pushing a `v*` tag builds one archive per platform and publishes them on a GitHub Release. Each archive is a single package of this server: the stdio binary, the Streamable HTTP binary, `README.md`, and `.env.example`. Windows archives are zip files; the others are tar.gz. `checksums.txt` lists SHA-256 digests.
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+Archive names look like `deepseek-search-mcp_v0.1.0_linux_amd64.tar.gz`. Platforms are linux, darwin, and windows, each for amd64 and arm64.
+
+Build the same archives locally:
+
+```bash
+make release
+```
+
 ## Docker
 
 Build the HTTP image, then run Compose with `IMAGE_NAME` and `DEEPSEEK_API_KEY` set:
